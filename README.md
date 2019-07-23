@@ -19,4 +19,9 @@ To integration this plugin add the following to `pubspec.yaml` dependencies sect
 
     flutter_greedygame_plugin: ^0.0.23
     
+### Sample
+Sample integration app for the following can be found in https://github.com/GreedyGame/flutter-sample
 
+### Documentation
+
+Documentation can be found in https://docs.greedygame.com/sdk8.8.16/
