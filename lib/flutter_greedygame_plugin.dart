@@ -19,9 +19,9 @@ class GreedyGame {
   static const CAMPAIGN_UNAVAILABLE = "gg_campaign_unavailable";
   static const CAMPAIGN_ERROR = "gg_campaign_error";
 
-  Function onCampaignAvailable;
-  Function onCampaignUnAvailable;
-  Function onCampaignError;
+  Function _onCampaignAvailable;
+  Function _onCampaignUnAvailable;
+  Function _onCampaignError;
 
   String gameID;
   List<String> units;
@@ -39,18 +39,18 @@ class GreedyGame {
   Future<dynamic> _handleMethod(MethodCall call) {
     switch (call.method) {
       case CAMPAIGN_AVAILABLE:
-        if (onCampaignAvailable != null) {
-          onCampaignAvailable();
+        if (_onCampaignAvailable != null) {
+          _onCampaignAvailable();
         }
         break;
       case CAMPAIGN_UNAVAILABLE:
-        if (onCampaignUnAvailable != null) {
-          onCampaignUnAvailable();
+        if (_onCampaignUnAvailable != null) {
+          _onCampaignUnAvailable();
         }
         break;
       case CAMPAIGN_ERROR:
-        if (onCampaignError != null) {
-          onCampaignError();
+        if (_onCampaignError != null) {
+          _onCampaignError();
         }
         break;
     }
@@ -76,18 +76,36 @@ class GreedyGame {
   }
 
   GreedyGame setCampaignAvailable(Function campaignAvailable) {
-    onCampaignAvailable = campaignAvailable;
+    _onCampaignAvailable = campaignAvailable;
     return this;
   }
 
   GreedyGame setCampaignUnAvailable(Function campaignUnAvailable) {
-    onCampaignUnAvailable = campaignUnAvailable;
+    _onCampaignUnAvailable = campaignUnAvailable;
     return this;
   }
 
   GreedyGame setCampaignError(Function campaignError) {
-    onCampaignError = campaignError;
+    _onCampaignError = campaignError;
     return this;
+  }
+
+  void removeCampaignAvailable() {
+    _onCampaignAvailable = null;
+  }
+
+  void removeCampaignUnAvailable() {
+    _onCampaignUnAvailable = null;
+  }
+
+  void removeCampaignError() {
+    _onCampaignError = null;
+  }
+
+  void dispose() {
+    removeCampaignAvailable();
+    removeCampaignUnAvailable();
+    removeCampaignError();
   }
 
   void init() {
